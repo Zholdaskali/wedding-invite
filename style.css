@@ -1,0 +1,173 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: #0f2027;
+  color: white;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* INTRO */
+#intro {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%); /* Центрируем контейнер на ПК */
+  width: 100%;
+  max-width: 450px; /* Ограничиваем ширину видео на ПК под формат телефона */
+  height: 100%;
+  background: black;
+  z-index: 999;
+}
+
+#intro video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Видео заполнит контейнер без искажения пропорций */
+}
+
+/* MAIN */
+#main {
+  display: none;
+  padding: 20px;
+  max-width: 450px; /* Ограничиваем ширину контента на ПК */
+  margin: 0 auto;  /* Центрируем сайт на ПК */
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 25px 20px;
+  margin: 20px auto;
+  width: auto; /* Позволяет карточке быть резиновой */
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+input {
+  padding: 12px;
+  width: 100%;
+  margin: 15px 0;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.9);
+  color: #333;
+  font-size: 16px; /* Предотвращает авто-зум в Safari на iPhone */
+  box-sizing: border-box;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+button {
+  flex: 1; /* Кнопки будут одинакового размера */
+  padding: 14px;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+button:active {
+  transform: scale(0.95); /* Эффект нажатия */
+}
+
+.yes { background: #00c853; color: white; }
+.no { background: #d50000; color: white; }
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0 0 0;
+  max-height: 200px; /* Чтобы список гостей не растягивал сайт бесконечно */
+  overflow-y: auto;  /* Появится скролл внутри карточки, если гостей много */
+}
+
+li {
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: left;
+}
+
+/* МЕДИА-ЗАПРОС ДЛЯ СМАРТФОНОВ (Экраны меньше 450px) */
+@media (max-width: 450px) {
+  #intro {
+    max-width: 100%; /* На телефонах видео встает на честный Fullscreen */
+  }
+  #main {
+    padding: 15px;
+  }
+  .card {
+    margin: 10px 0;
+  }
+}
+
+/* СТИЛИ ДЛЯ СТАРТОВОГО ЭКРАНА */
+#start-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0f2027; /* Такой же фон, как у основного сайта */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.start-card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 40px 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  max-width: 320px;
+  width: 80%;
+}
+
+.start-card h2 {
+  margin: 0 0 10px 0;
+  font-family: 'Georgia', serif; /* Красивый свадебный шрифт для имён */
+  font-size: 28px;
+  letter-spacing: 1px;
+}
+
+.start-card p {
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 25px;
+  font-size: 16px;
+}
+
+.start-btn {
+  background: linear-gradient(135deg, #e65c00, #f9d423); /* Золотисто-оранжевый градиент */
+  color: white;
+  border: none;
+  padding: 15px 25px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(230, 92, 0, 0.4);
+  width: 100%;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.start-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(230, 92, 0, 0.6);
+}
+
+.start-btn:active {
+  transform: translateY(1px);
+}

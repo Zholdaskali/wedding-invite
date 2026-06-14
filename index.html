@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>Приглашение</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- СТАРТОВЫЙ ЭКРАН ДЛЯ ВКЛЮЧЕНИЯ ЗВУКА -->
+<div id="start-screen">
+  <div class="start-card">
+    <h2>Daulet & Asem</h2>
+    <p>Вас приглашают на свадьбу ✨</p>
+    <!-- Кнопка, которая запускает видео со звуком -->
+    <button class="start-btn" onclick="startVideo()">Открыть приглашение 🤍</button>
+  </div>
+</div>
+
+<!-- INTRO VIDEO (Убрали muted) -->
+<div id="intro" style="display: none;">
+  <video id="wedding-video" autoplay playsinline onended="showMain()">
+    <source src="video/Daulet&Asem.mp4" type="video/mp4">
+  </video>
+</div>
+
+<!-- MAIN -->
+<div id="main">
+  <div class="card">
+    <h1>🎉 Приглашение</h1>
+    <p>Ты приглашён на мероприятие</p>
+
+    <input id="name" placeholder="Твоё имя">
+
+    <div class="buttons">
+      <button class="yes" onclick="send('yes')">👍 Приду</button>
+      <button class="no" onclick="send('no')">👎 Не приду</button>
+    </div>
+
+    <p id="msg"></p>
+  </div>
+
+  <div class="card">
+    <h3>📋 Гости</h3>
+    <ul id="guests"></ul>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
