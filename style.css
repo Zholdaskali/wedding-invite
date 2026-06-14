@@ -1,15 +1,111 @@
+/* Общие настройки и сброс стилей */
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Georgia', serif; /* Более элегантный классический шрифт */
-  /* Светлый мраморный фон, как на картинке image_375e21.jpg */
-  background: #f4f4f2 linear-gradient(135deg, rgba(255,255,255,0.6) 0%, rgba(240,240,235,0.6) 100%);
-  color: #2c3e2b; /* Благородный темно-зеленый оттенок текста вместо черного */
+  font-family: 'Montserrat', sans-serif;
+  /* Светлая благородная мраморная основа, отсылающая к image_375e21.jpg */
+  background-color: #f7f7f4;
+  background-image: 
+    linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(243, 243, 238, 0.6) 100%),
+    radial-gradient(circle at 30% 20%, rgba(212, 175, 55, 0.03) 0%, transparent 40%);
+  color: #1d3322; /* Глубокий эвкалиптовый цвет текста */
   text-align: center;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ЭЛЕГАНТНЫЙ СТАРТОВЫЙ ЭКРАН */
+#start-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #f7f7f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
   box-sizing: border-box;
 }
 
-/* INTRO */
+.start-card {
+  background: #ffffff;
+  padding: 50px 30px;
+  border-radius: 2px; /* Строгие дорогие формы вместо круглых */
+  border: 1px solid rgba(197, 160, 89, 0.3); /* Матовое золото */
+  box-shadow: 0 20px 50px rgba(29, 51, 34, 0.05);
+  max-width: 360px;
+  width: 100%;
+  position: relative;
+}
+
+/* Монограмма семьи Мусиных */
+.monogram {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 48px;
+  color: #c5a059;
+  line-height: 1;
+  margin-bottom: 10px;
+  font-italic: italic;
+}
+
+.gold-divider {
+  width: 40px;
+  height: 1px;
+  background: #c5a059;
+  margin: 0 auto 20px auto;
+}
+
+.start-card h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  font-weight: 400;
+  color: #1d3322;
+  margin: 0 0 5px 0;
+  letter-spacing: 1px;
+}
+
+.family-tag {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #c5a059;
+  margin: 0 0 25px 0;
+  font-weight: 500;
+}
+
+.invite-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
+  line-height: 1.5;
+  color: #3a4d3f;
+  margin-bottom: 35px;
+}
+
+.start-btn {
+  background: #1d3322;
+  color: #ffffff;
+  border: 1px solid #1d3322;
+  padding: 16px 30px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 500;
+  border-radius: 0;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.start-btn:hover {
+  background: transparent;
+  color: #1d3322;
+  border-color: #1d3322;
+}
+
+/* КОНТЕЙНЕР ВИДЕО */
 #intro {
   position: fixed;
   top: 0;
@@ -28,190 +124,227 @@ body {
   object-fit: cover;
 }
 
-/* MAIN CONTAINER */
+/* ОСНОВНОЙ САЙТ */
 #main {
   display: none;
-  padding: 20px;
+  padding: 30px 20px;
   max-width: 450px;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
-/* КАРТОЧКИ (Светлые, воздушные, с легкой золотистой каймой) */
+/* ДИЗАЙН КАРТОЧЕК */
 .card {
-  background: rgba(255, 255, 255, 0.85);
-  padding: 30px 20px;
-  margin: 25px auto;
-  border-radius: 15px;
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  border: 1px solid rgba(212, 175, 55, 0.3); /* Легкий золотой контур */
-  box-shadow: 0 10px 30px rgba(44, 62, 43, 0.08);
+  background: #ffffff;
+  padding: 40px 25px;
+  margin-bottom: 30px;
+  border-radius: 0; /* Архитектурный строгий премиум стиль */
+  border: 1px solid rgba(197, 160, 89, 0.25);
+  box-shadow: 0 10px 35px rgba(29, 51, 34, 0.04);
+  position: relative;
 }
 
 .card h1 {
-  font-size: 26px;
-  color: #2c3e2b; /* Цвет как у текста на пригласительном */
-  margin-bottom: 5px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  font-weight: 400;
+  color: #1d3322;
+  margin: 0 0 8px 0;
 }
 
-.card h3 {
-  font-size: 20px;
-  color: #2c3e2b;
-  margin-top: 0;
+.card-subtitle {
+  font-size: 13px;
+  color: #76877b;
+  margin: 0 0 30px 0;
+  font-weight: 300;
+}
+
+/* Поле ввода */
+.input-wrapper {
+  position: relative;
+  margin-bottom: 25px;
 }
 
 input {
-  padding: 14px;
+  padding: 16px 12px;
   width: 100%;
-  margin: 20px 0;
-  border-radius: 8px;
-  border: 1px solid rgba(44, 62, 43, 0.2);
-  background: #ffffff;
-  color: #2c3e2b;
-  font-size: 16px;
+  border: none;
+  border-bottom: 1px solid rgba(29, 51, 34, 0.2);
+  background: transparent;
+  color: #1d3322;
+  font-size: 15px;
   box-sizing: border-box;
-  font-family: inherit;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  transition: border-color 0.3s ease;
 }
 
 input:focus {
   outline: none;
-  border-color: #2c3e2b;
+  border-bottom-color: #c5a059;
 }
 
-/* КНОПКИ */
+input::placeholder {
+  color: #a3b0a7;
+  font-weight: 300;
+}
+
+/* КНОПКИ RSVP */
 .buttons {
   display: flex;
-  gap: 12px;
+  gap: 15px;
   justify-content: center;
-  margin-top: 10px;
 }
 
 button {
   flex: 1;
-  padding: 15px;
+  padding: 16px 10px;
   border: none;
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 600;
-  border-radius: 50px; /* Округлые аккуратные кнопки */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 0;
   cursor: pointer;
-  font-family: inherit;
-  transition: all 0.2s ease;
+  font-family: 'Montserrat', sans-serif;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Эвкалиптовая кнопка "Приду" */
+/* Эвкалиптовая "Подтверждаю" */
 .yes { 
-  background: #2c3e2b; 
+  background: #1d3322; 
   color: #ffffff; 
-  box-shadow: 0 4px 12px rgba(44, 62, 43, 0.2);
+  border: 1px solid #1d3322;
 }
 
-/* Матово-золотая кнопка "Не приду" */
+/* Золотая "Не смогу" */
 .no { 
-  background: #d4af37; 
-  color: #ffffff; 
-  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+  background: transparent; 
+  color: #c5a059; 
+  border: 1px solid #c5a059;
 }
 
-/* Стили при наведении на активные кнопки */
 button:not(:disabled):hover {
-  transform: translateY(-2px);
-  opacity: 0.9;
+  transform: translateY(-1px);
 }
 
-/* Стили для ЗАБЛОКИРОВАННЫХ кнопок (когда нажали) */
+.yes:not(:disabled):hover {
+  background: #2a4731;
+  border-color: #2a4731;
+}
+
+.no:not(:disabled):hover {
+  background: rgba(197, 160, 89, 0.05);
+}
+
+/* Улучшенная блокировка кнопок (Защита от двойного клика) */
 button:disabled, input:disabled {
-  background: #bcbcbc !important;
-  color: #f0f0f0 !important;
-  box-shadow: none !important;
+  background: #eaeaea !important;
+  color: #b0b0b0 !important;
+  border-color: #eaeaea !important;
   cursor: not-allowed;
   transform: none !important;
-  opacity: 0.6;
+  opacity: 0.7;
 }
 
+/* Статус сообщения */
 #msg {
-  font-size: 18px;
-  font-weight: bold;
-  margin-top: 15px;
-  color: #2c3e2b;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-style: italic;
+  margin: 25px 0 0 0;
+  color: #c5a059;
+  min-height: 27px;
 }
 
 /* СПИСОК ГОСТЕЙ */
+.card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: #1d3322;
+  margin: 0 0 20px 0;
+  border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+  padding-bottom: 10px;
+}
+
+.guests-container {
+  max-height: 250px;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+/* Кастомный красивый скроллбар списка */
+.guests-container::-webkit-scrollbar {
+  width: 3px;
+}
+.guests-container::-webkit-scrollbar-thumb {
+  background-color: rgba(197, 160, 89, 0.3);
+}
+
 ul {
   list-style: none;
   padding: 0;
-  margin: 15px 0 0 0;
-  max-height: 220px;
-  overflow-y: auto;
+  margin: 0;
 }
 
 li {
-  padding: 10px 12px;
-  border-bottom: 1px solid rgba(44, 62, 43, 0.1);
+  padding: 12px 5px;
+  border-bottom: 1px solid rgba(29, 51, 34, 0.05);
   text-align: left;
-  font-size: 15px;
-  color: #4a5d49;
-}
-
-/* СТАРТОВЫЙ ЭКРАН (в тон мрамору) */
-#start-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #f4f4f2;
+  font-size: 14px;
+  font-weight: 300;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+  justify-content: space-between;
+  color: #3a4d3f;
 }
 
-.start-card {
-  background: #ffffff;
-  padding: 40px 30px;
-  border-radius: 20px;
-  border: 1px solid rgba(212, 175, 55, 0.4);
-  box-shadow: 0 15px 35px rgba(44, 62, 43, 0.08);
-  max-width: 320px;
-  width: 80%;
+li::after {
+  font-weight: 500;
+  font-size: 12px;
 }
 
-.start-card h2 {
-  margin: 0 0 10px 0;
+/* Декоративный статус гостя в списке */
+li[data-status="yes"]::after {
+  content: "Придет";
+  color: #1d3322;
+}
+li[data-status="no"]::after {
+  content: "Не придет";
+  color: #b0b0b0;
+}
+
+/* ФУТЕР (Мусины Алпат - Гулмира) */
+.wedding-footer {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.footer-title {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #76877b;
+  margin: 0 0 5px 0;
+}
+
+.footer-names {
+  font-family: 'Cormorant Garamond', serif;
   font-size: 28px;
-  color: #2c3e2b;
-  letter-spacing: 1px;
+  color: #1d3322;
+  margin: 0;
 }
 
-.start-card p {
-  color: #6b7c6a;
-  margin-bottom: 30px;
-  font-size: 16px;
-}
-
-/* Кнопка на заставке — глубокий эвкалипт с золотым отливом при ховере */
-.start-btn {
-  background: #2c3e2b;
-  color: white;
-  border: none;
-  padding: 16px 25px;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 50px;
-  cursor: pointer;
-  box-shadow: 0 5px 15px rgba(44, 62, 43, 0.25);
-  width: 100%;
-}
-
-/* АДАПТИВНОСТЬ */
+/* АДАПТИВНОСТЬ ПОД ТЕЛЕФОНЫ */
 @media (max-width: 450px) {
   #intro {
     max-width: 100%;
   }
   #main {
-    padding: 15px;
+    padding: 20px 15px;
   }
   .card {
-    margin: 15px 0;
+    padding: 35px 20px;
+    margin-bottom: 20px;
   }
 }

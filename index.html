@@ -3,49 +3,74 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-  <title>Приглашение</title>
+  <title>Тойға шақыру | Даулет & Әсем</title>
+  <!-- Подключаем изящные шрифты для свадебной полиграфии -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- СТАРТОВЫЙ ЭКРАН ДЛЯ ВКЛЮЧЕНИЯ ЗВУКА -->
+<!-- СТАРТОВЫЙ ЭКРАН (ПРЕМИУМ ЗАСТАВКА) -->
 <div id="start-screen">
   <div class="start-card">
+    <div class="monogram">M</div>
+    <div class="gold-divider"></div>
     <h2>Daulet & Asem</h2>
-    <p>Вас приглашают на свадьбу ✨</p>
-    <!-- Кнопка, которая запускает видео со звуком -->
-    <button class="start-btn" onclick="startVideo()">Открыть приглашение 🤍</button>
+    <p class="family-tag">Мусиндер әулеті</p>
+    <p class="invite-text">Сіздерді ұлымыз Дәулет пен келініміз Әсемнің үйлену тойына қадірлі қонағы болуға шақырамыз!</p>
+    <button class="start-btn" onclick="startVideo()">Открыть приглашение</button>
   </div>
 </div>
 
-<!-- INTRO VIDEO (Убрали muted) -->
+<!-- INTRO VIDEO БЛОК -->
 <div id="intro" style="display: none;">
   <video id="wedding-video" autoplay playsinline onended="showMain()">
+    <!-- Убедитесь, что имя файла совпадает. Если переименовали в wedding.mp4 — замените тут -->
     <source src="video/Daulet&Asem.mp4" type="video/mp4">
   </video>
 </div>
 
-<!-- MAIN -->
+<!-- ОСНОВНОЙ КОНТЕНТ (САЙТ) -->
 <div id="main">
-  <div class="card">
-    <h1>🎉 Приглашение</h1>
-    <p>Ты приглашён на мероприятие</p>
+  
+  <!-- Карточка RSVP -->
+  <div class="card main-card">
+    <div class="card-decor-top"></div>
+    <h1>Регистрация гостя</h1>
+    <p class="card-subtitle">Пожалуйста, подтвердите ваше присутствие</p>
 
-    <input id="name" placeholder="Твоё имя">
+    <div class="input-wrapper">
+      <input id="name" placeholder="Введите ваше имя и фамилию" autocomplete="off">
+    </div>
 
     <div class="buttons">
-      <button class="yes" onclick="send('yes')">👍 Приду</button>
-      <button class="no" onclick="send('no')">👎 Не приду</button>
+      <button class="yes" onclick="send('yes')">Подтверждаю</button>
+      <button class="no" onclick="send('no')">Не смогу прийти</button>
     </div>
 
     <p id="msg"></p>
+    <div class="card-decor-bottom"></div>
   </div>
 
-  <div class="card">
-    <h3>📋 Гости</h3>
-    <ul id="guests"></ul>
+  <!-- Карточка со списком гостей -->
+  <div class="card guests-card">
+    <h3>Список приглашенных гостей</h3>
+    <div class="guests-container">
+      <ul id="guests">
+        <!-- Сюда подгружаются гости из Google Таблицы -->
+      </ul>
+    </div>
   </div>
+
+  <!-- Футер в стиле референса image_375e21.jpg -->
+  <footer class="wedding-footer">
+    <p class="footer-title">Той иелері:</p>
+    <p class="footer-names">Алпат - Гулмира</p>
+  </footer>
+
 </div>
 
 <script src="app.js"></script>
