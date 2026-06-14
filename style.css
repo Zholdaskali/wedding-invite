@@ -1,9 +1,10 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
-  background: #0f2027;
-  color: white;
+  font-family: 'Georgia', serif; /* Более элегантный классический шрифт */
+  /* Светлый мраморный фон, как на картинке image_375e21.jpg */
+  background: #f4f4f2 linear-gradient(135deg, rgba(255,255,255,0.6) 0%, rgba(240,240,235,0.6) 100%);
+  color: #2c3e2b; /* Благородный темно-зеленый оттенок текста вместо черного */
   text-align: center;
   box-sizing: border-box;
 }
@@ -13,111 +14,152 @@ body {
   position: fixed;
   top: 0;
   left: 50%;
-  transform: translateX(-50%); /* Центрируем контейнер на ПК */
+  transform: translateX(-50%);
   width: 100%;
-  max-width: 450px; /* Ограничиваем ширину видео на ПК под формат телефона */
+  max-width: 450px;
   height: 100%;
-  background: black;
+  background: #000;
   z-index: 999;
 }
 
 #intro video {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Видео заполнит контейнер без искажения пропорций */
+  object-fit: cover;
 }
 
-/* MAIN */
+/* MAIN CONTAINER */
 #main {
   display: none;
   padding: 20px;
-  max-width: 450px; /* Ограничиваем ширину контента на ПК */
-  margin: 0 auto;  /* Центрируем сайт на ПК */
+  max-width: 450px;
+  margin: 0 auto;
 }
 
+/* КАРТОЧКИ (Светлые, воздушные, с легкой золотистой каймой) */
 .card {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 25px 20px;
-  margin: 20px auto;
-  width: auto; /* Позволяет карточке быть резиновой */
+  background: rgba(255, 255, 255, 0.85);
+  padding: 30px 20px;
+  margin: 25px auto;
   border-radius: 15px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(212, 175, 55, 0.3); /* Легкий золотой контур */
+  box-shadow: 0 10px 30px rgba(44, 62, 43, 0.08);
+}
+
+.card h1 {
+  font-size: 26px;
+  color: #2c3e2b; /* Цвет как у текста на пригласительном */
+  margin-bottom: 5px;
+}
+
+.card h3 {
+  font-size: 20px;
+  color: #2c3e2b;
+  margin-top: 0;
 }
 
 input {
-  padding: 12px;
+  padding: 14px;
   width: 100%;
-  margin: 15px 0;
+  margin: 20px 0;
   border-radius: 8px;
-  border: 1px solid rgba(255,255,255,0.3);
-  background: rgba(255,255,255,0.9);
-  color: #333;
-  font-size: 16px; /* Предотвращает авто-зум в Safari на iPhone */
+  border: 1px solid rgba(44, 62, 43, 0.2);
+  background: #ffffff;
+  color: #2c3e2b;
+  font-size: 16px;
   box-sizing: border-box;
+  font-family: inherit;
 }
 
+input:focus {
+  outline: none;
+  border-color: #2c3e2b;
+}
+
+/* КНОПКИ */
 .buttons {
   display: flex;
-  gap: 10px;
+  gap: 12px;
   justify-content: center;
   margin-top: 10px;
 }
 
 button {
-  flex: 1; /* Кнопки будут одинакового размера */
-  padding: 14px;
+  flex: 1;
+  padding: 15px;
   border: none;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 50px; /* Округлые аккуратные кнопки */
   cursor: pointer;
-  transition: transform 0.1s ease;
+  font-family: inherit;
+  transition: all 0.2s ease;
 }
 
-button:active {
-  transform: scale(0.95); /* Эффект нажатия */
+/* Эвкалиптовая кнопка "Приду" */
+.yes { 
+  background: #2c3e2b; 
+  color: #ffffff; 
+  box-shadow: 0 4px 12px rgba(44, 62, 43, 0.2);
 }
 
-.yes { background: #00c853; color: white; }
-.no { background: #d50000; color: white; }
+/* Матово-золотая кнопка "Не приду" */
+.no { 
+  background: #d4af37; 
+  color: #ffffff; 
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+}
 
+/* Стили при наведении на активные кнопки */
+button:not(:disabled):hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+/* Стили для ЗАБЛОКИРОВАННЫХ кнопок (когда нажали) */
+button:disabled, input:disabled {
+  background: #bcbcbc !important;
+  color: #f0f0f0 !important;
+  box-shadow: none !important;
+  cursor: not-allowed;
+  transform: none !important;
+  opacity: 0.6;
+}
+
+#msg {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 15px;
+  color: #2c3e2b;
+}
+
+/* СПИСОК ГОСТЕЙ */
 ul {
   list-style: none;
   padding: 0;
   margin: 15px 0 0 0;
-  max-height: 200px; /* Чтобы список гостей не растягивал сайт бесконечно */
-  overflow-y: auto;  /* Появится скролл внутри карточки, если гостей много */
+  max-height: 220px;
+  overflow-y: auto;
 }
 
 li {
-  padding: 8px 10px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(44, 62, 43, 0.1);
   text-align: left;
+  font-size: 15px;
+  color: #4a5d49;
 }
 
-/* МЕДИА-ЗАПРОС ДЛЯ СМАРТФОНОВ (Экраны меньше 450px) */
-@media (max-width: 450px) {
-  #intro {
-    max-width: 100%; /* На телефонах видео встает на честный Fullscreen */
-  }
-  #main {
-    padding: 15px;
-  }
-  .card {
-    margin: 10px 0;
-  }
-}
-
-/* СТИЛИ ДЛЯ СТАРТОВОГО ЭКРАНА */
+/* СТАРТОВЫЙ ЭКРАН (в тон мрамору) */
 #start-screen {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: #0f2027; /* Такой же фон, как у основного сайта */
+  background: #f4f4f2;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -125,49 +167,51 @@ li {
 }
 
 .start-card {
-  background: rgba(255, 255, 255, 0.05);
+  background: #ffffff;
   padding: 40px 30px;
   border-radius: 20px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  box-shadow: 0 15px 35px rgba(44, 62, 43, 0.08);
   max-width: 320px;
   width: 80%;
 }
 
 .start-card h2 {
   margin: 0 0 10px 0;
-  font-family: 'Georgia', serif; /* Красивый свадебный шрифт для имён */
   font-size: 28px;
+  color: #2c3e2b;
   letter-spacing: 1px;
 }
 
 .start-card p {
-  color: rgba(255, 255, 255, 0.7);
-  margin-bottom: 25px;
+  color: #6b7c6a;
+  margin-bottom: 30px;
   font-size: 16px;
 }
 
+/* Кнопка на заставке — глубокий эвкалипт с золотым отливом при ховере */
 .start-btn {
-  background: linear-gradient(135deg, #e65c00, #f9d423); /* Золотисто-оранжевый градиент */
+  background: #2c3e2b;
   color: white;
   border: none;
-  padding: 15px 25px;
+  padding: 16px 25px;
   font-size: 16px;
   font-weight: bold;
-  border-radius: 30px;
+  border-radius: 50px;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(230, 92, 0, 0.4);
+  box-shadow: 0 5px 15px rgba(44, 62, 43, 0.25);
   width: 100%;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.start-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(230, 92, 0, 0.6);
-}
-
-.start-btn:active {
-  transform: translateY(1px);
+/* АДАПТИВНОСТЬ */
+@media (max-width: 450px) {
+  #intro {
+    max-width: 100%;
+  }
+  #main {
+    padding: 15px;
+  }
+  .card {
+    margin: 15px 0;
+  }
 }

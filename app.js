@@ -7,15 +7,12 @@ function startVideo() {
   const intro = document.getElementById("intro");
   const video = document.getElementById("wedding-video");
 
-  // Скрываем стартовую кнопку и показываем видео-блок
   startScreen.style.display = "none";
   intro.style.display = "block";
 
-  // Запускаем видео программно
   video.currentTime = 0;
   video.play().catch(error => {
     console.log("Ошибка воспроизведения: ", error);
-    // Запасной план: если браузер заблокировал звук, включаем без звука
     video.muted = true;
     video.play();
   });
@@ -31,31 +28,50 @@ function showMain() {
 function send(status) {
   const nameInput = document.getElementById("name");
   const name = nameInput.value.trim();
+  
+  const btnYes = document.querySelector(".yes");
+  const btnNo = document.querySelector(".no");
 
-  // Не отправляем пустые имена
   if (!name) {
     alert("Пожалуйста, введите ваше имя перед отправкой.");
     return;
   }
 
-  // Блокируем ввод, пока идет отправка
+  // БЛОКИРОВКА: выключаем инпут и обе кнопки, чтобы нельзя было нажать дважды
   nameInput.disabled = true;
+  btnYes.disabled = true;
+  btnNo.disabled = true;
+
+  // Визуально показываем, что идет отправка
+  if (status === 'yes') {
+    btnYes.innerText = "Отправка...";
+  } else {
+    btnNo.innerText = "Отправка...";
+  }
 
   fetch(API_URL, {
     method: "POST",
-    mode: "no-cors", // Предотвращает ошибки безопасности (CORS) при отправке в Google
+    mode: "no-cors",
     body: JSON.stringify({ name, status })
   })
   .then(() => {
+    // Возвращаем кнопкам красивый текст финального статуса
+    btnYes.innerText = "👍 Приду";
+    btnNo.innerText = "👎 Не приду";
+
     document.getElementById("msg").innerText =
       status === "yes" ? "Ждём тебя 🎉" : "Жаль 😢";
     
-    // Спустя 1 секунду обновляем список гостей, чтобы там появилось новое имя
     setTimeout(loadGuests, 1000);
   })
   .catch(error => {
     console.error("Ошибка при отправке данных:", error);
+    // В случае жесткой ошибки сети возвращаем доступ к кнопкам
     nameInput.disabled = false;
+    btnYes.disabled = false;
+    btnNo.disabled = false;
+    btnYes.innerText = "👍 Приду";
+    btnNo.innerText = "👎 Не приду";
   });
 }
 
@@ -78,5 +94,4 @@ function loadGuests() {
     });
 }
 
-// Автоматически загружаем список гостей при первой загрузке страницы
 loadGuests();
