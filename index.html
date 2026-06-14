@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <title>Тойға шақыру | Даулет & Әсем</title>
-  <!-- Подключаем изящные шрифты для свадебной полиграфии -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -13,7 +12,7 @@
 
 <body>
 
-<!-- СТАРТОВЫЙ ЭКРАН (ПРЕМИУМ ЗАСТАВКА) -->
+<!-- СТАРТОВЫЙ ЭКРАН -->
 <div id="start-screen">
   <div class="start-card">
     <div class="monogram">M</div>
@@ -25,47 +24,103 @@
   </div>
 </div>
 
-<!-- INTRO VIDEO БЛОК -->
+<!-- INTRO VIDEO -->
 <div id="intro" style="display: none;">
   <video id="wedding-video" autoplay playsinline onended="showMain()">
-    <!-- Убедитесь, что имя файла совпадает. Если переименовали в wedding.mp4 — замените тут -->
     <source src="video/Daulet&Asem.mp4" type="video/mp4">
   </video>
 </div>
 
-<!-- ОСНОВНОЙ КОНТЕНТ (САЙТ) -->
+<!-- ОСНОВНОЙ КОНТЕНТ -->
 <div id="main">
+
+  <!-- КОНЦЕПТУАЛЬНЫЙ БЛОК: МЛЕЧНЫЙ ПУТЬ -->
+  <div class="card galaxy-card">
+    <div class="stars-icon">✦  ✦  ✦</div>
+    <p class="galaxy-story">
+      17 августа 2026 года в Млечном Пути, на самом пике августовского звездопада Персеид, миллионы космических частиц устремятся к Земле, оставляя яркие следы. Но главное событие этой Вселенной произойдет здесь — рождение новой семьи Дәулет пен Әсем. В этот вечер звезды светят только для нас.
+    </p>
+    <div class="gold-date">17.08.2026</div>
+  </div>
   
-  <!-- Карточка RSVP -->
+  <!-- КАРТОЧКА RSVP -->
   <div class="card main-card">
     <div class="card-decor-top"></div>
-    <h1>Регистрация гостя</h1>
-    <p class="card-subtitle">Пожалуйста, подтвердите ваше присутствие</p>
+    
+    <!-- Форма, которая скроется после отправки -->
+    <div id="rsvp-form-block">
+      <h1>Регистрация гостя</h1>
+      <p class="card-subtitle">Пожалуйста, подтвердите ваше присутствие</p>
 
-    <div class="input-wrapper">
-      <input id="name" placeholder="Введите ваше имя и фамилию" autocomplete="off">
+      <div class="input-wrapper">
+        <input id="name" placeholder="Введите ваше имя и фамилию" autocomplete="off">
+      </div>
+
+      <div class="buttons">
+        <button class="yes" onclick="send('yes')">Подтверждаю</button>
+        <button class="no" onclick="send('no')">Не смогу прийти</button>
+      </div>
     </div>
 
-    <div class="buttons">
-      <button class="yes" onclick="send('yes')">Подтверждаю</button>
-      <button class="no" onclick="send('no')">Не смогу прийти</button>
-    </div>
-
+    <!-- Блок сообщения после отправки -->
     <p id="msg"></p>
+
+    <!-- ЦИФРОВАЯ ВИЗИТКА ГОСТЯ (Появляется динамически) -->
+    <div id="wedding-card" style="display: none;">
+      <div class="card-badge">Digital Pass</div>
+      <div class="vcard-logo">M</div>
+      <h2 class="vcard-title">Даулет & Әсем</h2>
+      <p class="vcard-subtitle">Үйлену тойы • Свадебное торжество</p>
+      
+      <div class="vcard-divider"></div>
+      
+      <div class="vcard-info">
+        <div class="info-item">
+          <span class="info-label">Күн / Дата:</span>
+          <span class="info-value">17.08.2026 (Понедельник)</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Уақыты / Время:</span>
+          <span class="info-value">18:00</span>
+        </div>
+        <div class="info-item" id="vcard-location-row">
+          <span class="info-label">Мекен-жайы / Место:</span>
+          <span class="info-value">Ресторан "Prestige", г. Актобе</span> 
+          <!-- Подставьте свое название ресторана и город -->
+        </div>
+        <div class="info-item">
+          <span class="info-label">Той иелері:</span>
+          <span class="info-value">Алпат - Гулмира</span>
+        </div>
+      </div>
+
+      <div class="vcard-divider"></div>
+
+      <!-- Интерактивные кнопки визитки -->
+      <div class="vcard-actions">
+        <!-- Кнопка Календаря (для тех, кто придет) -->
+        <div id="calendar-action-wrapper">
+          <button onclick="downloadICS()" class="vcard-btn gold">Добавить в календарь</button>
+        </div>
+        <!-- Кнопка Маршрута -->
+        <a id="map-link" href="https://2gis.kz" target="_blank" class="vcard-btn outline">Посмотреть маршрут (2GIS)</a>
+        <!-- Быстрая связь через WhatsApp -->
+        <a id="whatsapp-link" href="https://wa.me/77000000000?text=Здравствуйте!+По+поводу+свадьбы+Даулета+и+Асем..." target="_blank" class="vcard-btn whatsapp">Связаться в WhatsApp</a>
+      </div>
+    </div>
+
     <div class="card-decor-bottom"></div>
   </div>
 
-  <!-- Карточка со списком гостей -->
+  <!-- СПИСОК ГОСТЕЙ -->
   <div class="card guests-card">
     <h3>Список приглашенных гостей</h3>
     <div class="guests-container">
-      <ul id="guests">
-        <!-- Сюда подгружаются гости из Google Таблицы -->
-      </ul>
+      <ul id="guests"></ul>
     </div>
   </div>
 
-  <!-- Футер в стиле референса image_375e21.jpg -->
+  <!-- ФУТЕР -->
   <footer class="wedding-footer">
     <p class="footer-title">Той иелері:</p>
     <p class="footer-names">Алпат - Гулмира</p>

@@ -348,3 +348,222 @@ li[data-status="no"]::after {
     margin-bottom: 20px;
   }
 }
+
+/* БЛОК МЛЕЧНОГО ПУТИ */
+.galaxy-card {
+  background: rgba(29, 51, 34, 0.03) !important; /* Очень легкий эвкалиптовый туман */
+  border: 1px dashed rgba(197, 160, 89, 0.4) !important;
+  padding: 35px 25px !important;
+}
+
+.stars-icon {
+  color: #c5a059;
+  letter-spacing: 5px;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.galaxy-story {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  line-height: 1.6;
+  font-style: italic;
+  color: #2c4232;
+  margin: 0 0 20px 0;
+}
+
+.gold-date {
+  font-size: 20px;
+  letter-spacing: 4px;
+  color: #c5a059;
+  font-weight: 500;
+}
+
+/* БЛОК КАЛЕНДАРЯ НА СТРАНИЦЕ ПОДТВЕРЖДЕНИЯ */
+.calendar-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(197, 160, 89, 0.3), transparent);
+  margin: 25px 0;
+}
+
+.calendar-invite-text {
+  font-size: 12px;
+  color: #536958;
+  line-height: 1.5;
+  margin-bottom: 15px;
+  font-weight: 400;
+}
+
+.calendar-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cal-btn {
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  padding: 12px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+}
+
+.cal-btn.google {
+  background: transparent;
+  color: #1d3322;
+  border: 1px solid #1d3322;
+}
+
+.cal-btn.ics {
+  background: #1d3322;
+  color: #ffffff;
+  border: 1px solid #1d3322;
+}
+
+.cal-btn:hover {
+  opacity: 0.8;
+  transform: translateY(-1px);
+}
+
+/* ЦИФРОВАЯ ВИЗИТКА (ПОСЛЕ ПОДТВЕРЖДЕНИЯ) */
+#wedding-card {
+  background: #ffffff;
+  border: 1px solid #c5a059;
+  padding: 30px 20px;
+  margin-top: 20px;
+  position: relative;
+  box-shadow: 0 15px 40px rgba(29, 51, 34, 0.08);
+  animation: fadeInCard 0.6s ease forwards;
+}
+
+@keyframes fadeInCard {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.card-badge {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #c5a059;
+  border: 1px solid rgba(197, 160, 89, 0.4);
+  padding: 3px 8px;
+}
+
+.vcard-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-style: italic;
+  color: #c5a059;
+  margin-bottom: 5px;
+}
+
+.vcard-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 400;
+  color: #1d3322;
+  margin: 0 0 4px 0;
+}
+
+.vcard-subtitle {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #76877b;
+  margin: 0 0 20px 0;
+}
+
+.vcard-divider {
+  width: 100%;
+  height: 1px;
+  background: radial-gradient(circle, rgba(197, 160, 89, 0.4) 0%, transparent 80%);
+  margin: 15px 0;
+}
+
+/* Сетка параметров визитки */
+.vcard-info {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.info-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #76877b;
+  font-weight: 500;
+}
+
+.info-value {
+  font-size: 14px;
+  color: #1d3322;
+  font-weight: 400;
+}
+
+/* Кнопки действий внутри визитки */
+.vcard-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.vcard-btn {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  border-radius: 0;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.vcard-btn.gold {
+  background: #c5a059;
+  color: #ffffff;
+}
+
+.vcard-btn.outline {
+  background: transparent;
+  color: #1d3322;
+  border: 1px solid #1d3322;
+}
+
+.vcard-btn.whatsapp {
+  background: #1d3322;
+  color: #ffffff;
+}
+
+.vcard-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
