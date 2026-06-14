@@ -47,7 +47,6 @@
   <div class="card main-card">
     <div class="card-decor-top"></div>
     
-    <!-- Форма, которая скроется после отправки -->
     <div id="rsvp-form-block">
       <h1>Регистрация гостя</h1>
       <p class="card-subtitle">Пожалуйста, подтвердите ваше присутствие</p>
@@ -62,54 +61,64 @@
       </div>
     </div>
 
-    <!-- Блок сообщения после отправки -->
     <p id="msg"></p>
+    <div class="card-decor-bottom"></div>
+  </div>
 
-    <!-- ЦИФРОВАЯ ВИЗИТКА ГОСТЯ (Появляется динамически) -->
-    <div id="wedding-card" style="display: none;">
-      <div class="card-badge">Digital Pass</div>
-      <div class="vcard-logo">M</div>
-      <h2 class="vcard-title">Даулет & Әсем</h2>
-      <p class="vcard-subtitle">Үйлену тойы • Свадебное торжество</p>
+  <!-- МОДАЛЬНОЕ ОКНО С ЦИФРОВОЙ ВИЗИТКОЙ -->
+  <div id="vcard-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal()">&times;</span>
       
-      <div class="vcard-divider"></div>
-      
-      <div class="vcard-info">
-        <div class="info-item">
-          <span class="info-label">Күн / Дата:</span>
-          <span class="info-value">17.08.2026 (Понедельник)</span>
+      <!-- Сама карточка-визитка, которую можно будет скачать -->
+      <div id="wedding-card">
+        <div class="card-badge">Digital Pass</div>
+        <div class="vcard-logo">M</div>
+        <h2 class="vcard-title">Даулет & Әсем</h2>
+        <p class="vcard-subtitle">Үйлену тойы • Свадебное торжество</p>
+        
+        <div class="vcard-divider"></div>
+        
+        <div class="vcard-info">
+          <div class="info-item">
+            <span class="info-label">Қонақ / Гость:</span>
+            <span class="info-value" id="vcard-guest-name">Имя Гостя</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Күн / Дата:</span>
+            <span class="info-value">17.08.2026 (Понедельник)</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Уақыты / Время:</span>
+            <span class="info-value">18:00</span>
+          </div>
+          <div class="info-item" id="vcard-location-row">
+            <span class="info-label">Мекен-жайы / Место:</span>
+            <span class="info-value">"Jan" тойханасы, Ақтөбе қ., Аманкелді Иманов көшесі, 175</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Той иелері:</span>
+            <span class="info-value">Алпат - Гулмира</span>
+          </div>
         </div>
-        <div class="info-item">
-          <span class="info-label">Уақыты / Время:</span>
-          <span class="info-value">18:00</span>
-        </div>
-        <div class="info-item" id="vcard-location-row">
-          <span class="info-label">Мекен-жайы / Место:</span>
-          <span class="info-value">Ресторан "Prestige", г. Актобе</span> 
-          <!-- Подставьте свое название ресторана и город -->
-        </div>
-        <div class="info-item">
-          <span class="info-label">Той иелері:</span>
-          <span class="info-value">Алпат - Гулмира</span>
-        </div>
+        <div class="vcard-divider"></div>
       </div>
 
-      <div class="vcard-divider"></div>
-
-      <!-- Интерактивные кнопки визитки -->
+      <!-- Кнопки действий (под карточкой в модальном окне) -->
       <div class="vcard-actions">
-        <!-- Кнопка Календаря (для тех, кто придет) -->
+        <button onclick="downloadCardAsImage()" class="vcard-btn download-btn">📥 Скачать карточку в галерею</button>
+        
         <div id="calendar-action-wrapper">
           <button onclick="downloadICS()" class="vcard-btn gold">Добавить в календарь</button>
         </div>
-        <!-- Кнопка Маршрута -->
-        <a id="map-link" href="https://2gis.kz" target="_blank" class="vcard-btn outline">Посмотреть маршрут (2GIS)</a>
-        <!-- Быстрая связь через WhatsApp -->
-        <a id="whatsapp-link" href="https://wa.me/77000000000?text=Здравствуйте!+По+поводу+свадьбы+Даулета+и+Асем..." target="_blank" class="vcard-btn whatsapp">Связаться в WhatsApp</a>
+        
+        <!-- Ссылка на 2GIS с поиском адреса -->
+        <a id="map-link" href="https://2gis.kz/aktobe/search/Аманкельды%20Иманова%20175" target="_blank" class="vcard-btn outline">Маршрут в 2GIS</a>
+        
+        <!-- Ссылка на WhatsApp организаторов -->
+        <a id="whatsapp-link" href="https://wa.me/77086273671?text=Сәлеметсіз бе! Дәулет пен Әсемнің тойы бойынша..." target="_blank" class="vcard-btn whatsapp">Написать в WhatsApp</a>
       </div>
     </div>
-
-    <div class="card-decor-bottom"></div>
   </div>
 
   <!-- СПИСОК ГОСТЕЙ -->
