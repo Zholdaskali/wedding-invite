@@ -56,11 +56,16 @@
       </div>
 
       <!-- Выбор: Придет ли с супругом(ой) -->
-      <div class="spouse-selection" style="margin-bottom: 20px; font-family: 'Montserrat', sans-serif; font-size: 14px; color: #1d3322;">
+      <div class="spouse-selection" style="margin-bottom: 15px; font-family: 'Montserrat', sans-serif; font-size: 14px; color: #1d3322;">
         <label style="display: flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer;">
-          <input type="checkbox" id="has-spouse" style="width: 18px; height: 18px; accent-color: #c5a059;">
+          <input type="checkbox" id="has-spouse" onchange="toggleSpouseInput()" style="width: 18px; height: 18px; accent-color: #c5a059;">
           <span>Приду с супругом(ой) (Муж / Жена)</span>
         </label>
+      </div>
+
+      <!-- Дополнительное поле для имени супруга(и), появляется динамически -->
+      <div class="input-wrapper" id="spouse-name-container" style="display: none; margin-bottom: 20px;">
+        <input id="spouse-name" placeholder="Имя супруга / супруги (Например: Алия)" autocomplete="off">
       </div>
 
       <div class="buttons">

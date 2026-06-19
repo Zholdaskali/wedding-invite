@@ -25,11 +25,30 @@ function closeModal() {
   document.getElementById("vcard-modal").style.display = "none";
 }
 
+// Показывает или скрывает поле для имени супруга
+function toggleSpouseInput() {
+  const checkbox = document.getElementById("has-spouse");
+  const container = document.getElementById("spouse-name-container");
+  const spouseInput = document.getElementById("spouse-name");
+  
+  if (checkbox && checkbox.checked) {
+    container.style.display = "block";
+    spouseInput.focus();
+  } else {
+    container.style.display = "none";
+    if (spouseInput) spouseInput.value = ""; // Очищаем, если сняли галочку
+  }
+}
+
 function send(status) {
   const nameInput = document.getElementById("name");
   const name = nameInput.value.trim();
+  
   const hasSpouseCheckbox = document.getElementById("has-spouse");
   const hasSpouse = hasSpouseCheckbox && hasSpouseCheckbox.checked ? 'yes' : 'no';
+  
+  const spouseNameInput = document.getElementById("spouse-name");
+  const spouseName = spouseNameInput ? spouseNameInput.value.trim() : "";
   
   const btnYes = document.querySelector(".yes");
   const btnNo = document.querySelector(".no");
@@ -39,8 +58,15 @@ function send(status) {
     return;
   }
 
+  // Если выбрали "С супругом", но забыли написать имя
+  if (status === 'yes' && hasSpouse === 'yes' && !spouseName) {
+    alert("Пожалуйста, введите имя вашего(ей) супруга(и).");
+    return;
+  }
+
   nameInput.disabled = true;
   if(hasSpouseCheckbox) hasSpouseCheckbox.disabled = true;
+  if(spouseNameInput) spouseNameInput.disabled = true;
   btnYes.disabled = true;
   btnNo.disabled = true;
 
@@ -53,13 +79,13 @@ function send(status) {
   fetch(API_URL, {
     method: "POST",
     mode: "no-cors",
-    body: JSON.stringify({ name, status, hasSpouse })
+    body: JSON.stringify({ name, status, hasSpouse, spouseName })
   })
   .then(() => {
     document.getElementById("rsvp-form-block").style.display = "none";
     
-    // Формируем красивое отображение имени гостя (с супругом или соло)
-    const displayName = hasSpouse === 'yes' && status === 'yes' ? `${name} + жубайы` : name;
+    // Формируем красивое отображение на визитке: "Имя + ИмяСупруга" или просто "Имя"
+    const displayName = (hasSpouse === 'yes' && status === 'yes') ? `${name} + ${spouseName}` : name;
     document.getElementById("vcard-guest-name").innerText = displayName;
 
     const msgElement = document.getElementById("msg");
@@ -87,6 +113,7 @@ function send(status) {
     console.error("Ошибка:", error);
     nameInput.disabled = false;
     if(hasSpouseCheckbox) hasSpouseCheckbox.disabled = false;
+    if(spouseNameInput) spouseNameInput.disabled = false;
     btnYes.disabled = false;
     btnNo.disabled = false;
     btnYes.innerText = "Подтверждаю";
@@ -204,8 +231,10 @@ function loadGuests() {
         let li = document.createElement("li");
         let nameSpan = document.createElement("span");
         
-        // В общем списке на сайте пишем «+ жубайы», если стоит флаг супруга
-        const displayListText = g.hasSpouse === "yes" && g.status === "yes" ? `${g.name} + жубайы` : g.name;
+        // Отображение в общем списке на сайте
+        const displayListText = (g.hasSpouse === "yes" && g.status === "yes" && g.spouseName) 
+          ? `${g.name} + ${g.spouseName}` 
+          : g.name;
         
         nameSpan.textContent = displayListText;
         li.appendChild(nameSpan);
@@ -216,4 +245,4 @@ function loadGuests() {
     .catch(error => console.error("Ошибка:", error));
 }
 
-loadGuests(); 
+loadGuests();
