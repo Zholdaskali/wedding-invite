@@ -216,4 +216,4 @@ function loadGuests() {
     .catch(error => console.error("Ошибка:", error));
 }
 
-loadGuests();
+loadGuests(); 
