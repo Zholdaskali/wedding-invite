@@ -28,6 +28,8 @@ function closeModal() {
 function send(status) {
   const nameInput = document.getElementById("name");
   const name = nameInput.value.trim();
+  const hasSpouseCheckbox = document.getElementById("has-spouse");
+  const hasSpouse = hasSpouseCheckbox && hasSpouseCheckbox.checked ? 'yes' : 'no';
   
   const btnYes = document.querySelector(".yes");
   const btnNo = document.querySelector(".no");
@@ -38,6 +40,7 @@ function send(status) {
   }
 
   nameInput.disabled = true;
+  if(hasSpouseCheckbox) hasSpouseCheckbox.disabled = true;
   btnYes.disabled = true;
   btnNo.disabled = true;
 
@@ -50,11 +53,14 @@ function send(status) {
   fetch(API_URL, {
     method: "POST",
     mode: "no-cors",
-    body: JSON.stringify({ name, status })
+    body: JSON.stringify({ name, status, hasSpouse })
   })
   .then(() => {
     document.getElementById("rsvp-form-block").style.display = "none";
-    document.getElementById("vcard-guest-name").innerText = name;
+    
+    // Формируем красивое отображение имени гостя (с супругом или соло)
+    const displayName = hasSpouse === 'yes' && status === 'yes' ? `${name} + жубайы` : name;
+    document.getElementById("vcard-guest-name").innerText = displayName;
 
     const msgElement = document.getElementById("msg");
     const calendarAction = document.getElementById("calendar-action-wrapper");
@@ -80,6 +86,7 @@ function send(status) {
   .catch(error => {
     console.error("Ошибка:", error);
     nameInput.disabled = false;
+    if(hasSpouseCheckbox) hasSpouseCheckbox.disabled = false;
     btnYes.disabled = false;
     btnNo.disabled = false;
     btnYes.innerText = "Подтверждаю";
@@ -161,7 +168,6 @@ function downloadCardAsImage() {
   image.src = blobURL;
 }
 
-// ОБНОВЛЕНИЕ ЛОКАЦИИ В КАЛЕНДАРЕ СМАРТФОНА
 function downloadICS() {
   const icsData = [
     "BEGIN:VCALENDAR",
@@ -197,7 +203,11 @@ function loadGuests() {
       data.forEach(g => {
         let li = document.createElement("li");
         let nameSpan = document.createElement("span");
-        nameSpan.textContent = g.name;
+        
+        // В общем списке на сайте пишем «+ жубайы», если стоит флаг супруга
+        const displayListText = g.hasSpouse === "yes" && g.status === "yes" ? `${g.name} + жубайы` : g.name;
+        
+        nameSpan.textContent = displayListText;
         li.appendChild(nameSpan);
         li.setAttribute("data-status", g.status === "yes" ? "yes" : "no");
         list.appendChild(li);
