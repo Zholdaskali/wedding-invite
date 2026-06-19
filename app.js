@@ -1,4 +1,4 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbxUBMvxDFDeyNxVKns5PB_lVvbsSC6CtGbGfrGdAbjfcfByR3PE5Mz_zYQ9fB-LojRS/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbwcHvxRBqyc7_UOo-T1qKbsaYifg9S0lfdZ92POrF7VrPBbFnno07aqsH2LvCBEuNO-/exec";
 
 function startVideo() {
   const startScreen = document.getElementById("start-screen");
@@ -36,7 +36,7 @@ function toggleSpouseInput() {
     spouseInput.focus();
   } else {
     container.style.display = "none";
-    if (spouseInput) spouseInput.value = ""; // Очищаем, если сняли галочку
+    if (spouseInput) spouseInput.value = ""; // Очищаем поле при снятии галочки
   }
 }
 
@@ -58,7 +58,7 @@ function send(status) {
     return;
   }
 
-  // Если выбрали "С супругом", но забыли написать имя
+  // Проверка: если выбрали "С супругом", но забыли ввести имя
   if (status === 'yes' && hasSpouse === 'yes' && !spouseName) {
     alert("Пожалуйста, введите имя вашего(ей) супруга(и).");
     return;
@@ -84,7 +84,7 @@ function send(status) {
   .then(() => {
     document.getElementById("rsvp-form-block").style.display = "none";
     
-    // Формируем красивое отображение на визитке: "Имя + ИмяСупруга" или просто "Имя"
+    // Красивое имя на визитке: "Алибек + Алия" или просто "Алибек"
     const displayName = (hasSpouse === 'yes' && status === 'yes') ? `${name} + ${spouseName}` : name;
     document.getElementById("vcard-guest-name").innerText = displayName;
 
@@ -121,7 +121,7 @@ function send(status) {
   });
 }
 
-// ФУНКЦИЯ СКАЧИВАНИЯ КАРТОЧКИ КАК ИЗОБРАЖЕНИЯ
+// СКАЧИВАНИЕ КАРТОЧКИ КАК PNG ИЗОБРАЖЕНИЯ
 function downloadCardAsImage() {
   const guestName = document.getElementById("vcard-guest-name").innerText;
   const isAttending = document.getElementById("vcard-location-row").style.display !== "none";
@@ -231,7 +231,7 @@ function loadGuests() {
         let li = document.createElement("li");
         let nameSpan = document.createElement("span");
         
-        // Отображение в общем списке на сайте
+        // Отображение в списке гостей на сайте
         const displayListText = (g.hasSpouse === "yes" && g.status === "yes" && g.spouseName) 
           ? `${g.name} + ${g.spouseName}` 
           : g.name;
@@ -242,7 +242,7 @@ function loadGuests() {
         list.appendChild(li);
       });
     })
-    .catch(error => console.error("Ошибка:", error));
+    .catch(error => console.error("Ошибка получения списка гостей:", error));
 }
 
 loadGuests();
